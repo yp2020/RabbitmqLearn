@@ -26,7 +26,7 @@ public class MsgReceiver {
 
     /**
      * concurrency 为并发数量，也就是开启 10个值线程去消费消息
-     * @param 
+     * @param
      */
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME,concurrency = "10")
     public void handleMsg2(Message message, Channel channel ) throws IOException {
