@@ -2,6 +2,7 @@ package com.study.publisher;
 
 import com.study.publisher.config.FanoutConfig;
 import com.study.publisher.config.RabbitConfig;
+import com.study.publisher.config.TopicConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -24,6 +25,13 @@ class PublisherApplicationTests {
     @Test
     void fanoutTest(){
         rabbitTemplate.convertAndSend(FanoutConfig.FANOUT_EXCHANGE_NAME,null,"hello fanoutExchange");
+    }
+
+    @Test
+    void topicTest(){
+        //rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"xiaomi.news","小米新闻");
+        //rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"huawei.news","华为新闻");
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"huawei.phone.news","华为手机新闻");
     }
 
 }
