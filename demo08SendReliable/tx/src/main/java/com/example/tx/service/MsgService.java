@@ -19,7 +19,7 @@ public class MsgService {
     @Transactional
     public void send(){
         rabbitTemplate.convertAndSend(RabbitConfig.MESSAGE_EXCHANGE_NAME,RabbitConfig.MESSAGE_QUEUE_NAME,"hello,message");
-        
+
 
     }
 }
