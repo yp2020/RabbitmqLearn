@@ -1,13 +1,18 @@
 package com.study.publisher;
 
 import com.study.publisher.config.FanoutConfig;
+import com.study.publisher.config.HeaderConfig;
 import com.study.publisher.config.RabbitConfig;
 import com.study.publisher.config.TopicConfig;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+
 
 @SpringBootTest
 class PublisherApplicationTests {
@@ -32,6 +37,25 @@ class PublisherApplicationTests {
         //rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"xiaomi.news","小米新闻");
         //rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"huawei.news","华为新闻");
         rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,"huawei.phone.news","华为手机新闻");
+    }
+
+    @Test
+    void headerTest(){
+        Message nameMessage = MessageBuilder.withBody("hello,1111".getBytes())
+                .setHeader("name", "yyy")
+                .build();
+        rabbitTemplate.send(HeaderConfig.HEADER_EXCHANGE_NAME,null,nameMessage);
+
+        Message ageMessage1 = MessageBuilder.withBody("这是 age =99 的消息 ".getBytes())
+                .setHeader("age", 99)
+                .build();
+        rabbitTemplate.send(HeaderConfig.HEADER_EXCHANGE_NAME,null,ageMessage1);
+
+        Message ageMessage2 = MessageBuilder.withBody("这是 age=88 的消息 ".getBytes())
+                .setHeader("age", 98)
+                .build();
+        rabbitTemplate.send(HeaderConfig.HEADER_EXCHANGE_NAME,null,ageMessage2);
+
     }
 
 }
