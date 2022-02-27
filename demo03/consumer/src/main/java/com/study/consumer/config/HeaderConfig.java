@@ -52,7 +52,7 @@ public class HeaderConfig {
                 .to(headersExchange())
                 // 如果将来消息头部中包含 age 属性，并且属性值为 99
                 .where("age")
-                .matches(99);// 这里匹配不仅仅是数值 还有类型 
+                .matches(99);// 这里匹配不仅仅是数值 还有类型
     }
 
 
