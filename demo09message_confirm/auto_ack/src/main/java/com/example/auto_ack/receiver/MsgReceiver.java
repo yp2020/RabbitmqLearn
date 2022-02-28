@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author yang
  * @date 2022/02/28 15:48
  **/
-@Component
+//@Component
 public class MsgReceiver {
     private static  final Logger logger=
             LoggerFactory.getLogger(MsgReceiver.class);
