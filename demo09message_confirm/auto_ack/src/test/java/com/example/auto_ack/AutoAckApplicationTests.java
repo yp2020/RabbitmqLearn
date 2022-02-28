@@ -1,12 +1,11 @@
-package com.example.send_confirm;
+package com.example.auto_ack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SendConfirmApplicationTests {
+class AutoAckApplicationTests {
 
-    
     @Test
     void contextLoads() {
     }
